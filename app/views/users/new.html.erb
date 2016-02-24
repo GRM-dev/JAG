@@ -1,0 +1,21 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+      <h1>Rejestracja</h1>
+
+      <%= form_for(@user) do |f| %>
+        <div class="field">
+          <%= f.label "Email" %>
+          <%= f.email_field :email %><br>
+          <%= f.label "Haslo" %>
+          <%= f.password_field :password, autocomplete: "off" %><br>
+          <%= f.label "Powtorz haslo" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off" %><br>
+        </div>
+        <div class="actions">
+          <%= f.submit "Zarejestruj" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
