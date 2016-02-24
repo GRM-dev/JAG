@@ -4,17 +4,23 @@
       <h1>Rejestracja</h1>
 
       <%= form_for(@user) do |f| %>
-        <div class="field">
-          <%= f.label "Email" %>
-          <%= f.email_field :email %><br>
-          <%= f.label "Haslo" %>
-          <%= f.password_field :password, autocomplete: "off" %><br>
-          <%= f.label "Powtorz haslo" %>
-          <%= f.password_field :password_confirmation, autocomplete: "off" %><br>
-        </div>
-        <div class="actions">
-          <%= f.submit "Zarejestruj" %>
-        </div>
+          <div class="field">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">@</span>
+              <%= f.email_field :email, :class => "form-control", :placeholder => 'email' %>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon glyphicon glyphicon-credit-card" id="basic-addon1"></span>
+              <%= f.password_field :password, :class => "form-control", autocomplete: "off" %>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon glyphicon glyphicon-credit-card" id="basic-addon1"></span>
+              <%= f.password_field :password_confirmation, :class => "form-control", autocomplete: "off" %>
+            </div>
+          </div>
+          <div class="actions">
+            <%= f.submit "Zarejestruj", :class => "btn btn-default" %>
+          </div>
       <% end %>
     </div>
   </div>
