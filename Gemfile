@@ -33,6 +33,8 @@ gem 'rspec-rails'
 gem 'rspec-context-private'
 gem 'rspec-html-matchers'
 
+gem 'rails_12factor'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
