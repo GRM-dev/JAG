@@ -35,6 +35,11 @@ gem 'rspec-html-matchers'
 
 gem 'rails_12factor'
 
+gem 'heroku'
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
+gem 'faker'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

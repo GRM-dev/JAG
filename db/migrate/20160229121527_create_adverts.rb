@@ -6,9 +6,11 @@ class CreateAdverts < ActiveRecord::Migration
       t.date :date_adv_added
       t.date :date_adv_link_added, null: false
       t.date :date_expiration
+
       t.references :company
-      t.references :job_category, null: false
+      t.references :job_category
       t.references :city
+
       t.timestamps null: false
     end
   end

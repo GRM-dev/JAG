@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <div class="panel-body">
+    <strong><%= @adverts.count %></strong>
+  <table class="table table-striped table-responsive ">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>URL</th>
+      <th>Firma</th>
+      <th>Stanowisko</th>
+      <th>Miasto</th>
+      <th>Data dodania do listy</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @adverts.each do |a| %>
+        <tr>
+          <td><%= a.id %></td>
+          <td><%= link_to "Szczegoly", action: "show", id: a %></td>
+          <td><%= a.company.name %></td>
+          <td><%= a.appointment %></td>
+          <td><%= a.city.name %></td>
+          <td><%= a.date_adv_link_added %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

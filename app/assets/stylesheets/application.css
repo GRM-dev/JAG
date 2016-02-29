@@ -22,7 +22,7 @@
 html, body {
     background: #bfc25f;
     font-family: Arial, sans-serif;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #header {

@@ -1,3 +1,6 @@
 class City < ActiveRecord::Base
-  belongs_to :advert
+  has_many :advert
+  belongs_to :province
+
+  validates :name, presence: true, uniqueness: true
 end

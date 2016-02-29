@@ -1,3 +1,6 @@
 class Province < ActiveRecord::Base
-  belongs_to :advert
+  has_many :advert
+  has_many :city
+
+  validates :name, presence: true, uniqueness: true
 end

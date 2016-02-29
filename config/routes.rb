@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get '/profile' => 'profiles#index', as: :profile
   get '/info'=> 'static_pages#info'
   get '/findjob' => 'jobs#index'
-
+  get '/adverts' => 'adverts#index', as: :advert
+  get '/adverts/:id' => 'adverts#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

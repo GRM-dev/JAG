@@ -1,3 +1,3 @@
 class Company < ActiveRecord::Base
-  belongs_to :advert
+  has_many :advert
 end
