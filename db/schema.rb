@@ -11,10 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229120047) do
+ActiveRecord::Schema.define(version: 20160229142157) do
+
+  create_table "adverts", force: :cascade do |t|
+    t.string   "appointment",         limit: 255
+    t.string   "url",                 limit: 255
+    t.date     "date_adv_added"
+    t.date     "date_adv_link_added",             null: false
+    t.date     "date_expiration"
+    t.integer  "company_id",          limit: 4
+    t.integer  "job_category_id",     limit: 4,   null: false
+    t.integer  "city_id",             limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "province_id", limit: 4,   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "job_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "provinces", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "url",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
