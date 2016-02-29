@@ -27,14 +27,9 @@ html, body {
 
 #header {
     margin-bottom: 52px;
+    background: #186c6c;
 }
 
-.container {
-
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -68,7 +63,6 @@ code {
     font-size: 80%;
 }
 
-
 .form {
     text-align:center;
     margin: 0 auto 10px;
@@ -77,6 +71,6 @@ code {
     width: 300px;
 }
 
-header {
-    background: #186c6c;
+.jumbotron {
+    margin-bottom: 0px;
 }
