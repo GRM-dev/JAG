@@ -17,43 +17,46 @@
                 </div>
             <% end %>
             <div class=" col-md-9 col-lg-9 ">
-              <table class="table table-user-information">
-                <tbody>
-                <tr>
-                  <td>Kategoria:</td>
-                  <td><%= @advert.job_category.name %></td>
-                </tr>
-                <tr>
-                  <td>Miasto:</td>
-                  <td><%= @advert.city.name %></td>
-                </tr>
-                <tr>
-                  <td>Wojewodztwo:</td>
-                  <td><%= @advert.city.province.name %></td>
-                </tr>
-                <tr>
-                  <td>Firma:</td>
-                  <td><%= @advert.company.name %></td>
-                </tr>
-                <tr>
-                  <td>Stanowisko:</td>
-                  <td><%= @advert.appointment %></td>
-                </tr>
-                <tr>
-                  <td>Data ogloszenia:</td>
-                  <td>
-                    <% @advert.date_adv_added.strftime('%e %b %Y') %></td>
-                </tr>
-                <tr>
-                  <td>Oferta wygasa:</td>
-                  <td><%= @advert.date_expiration.strftime('%e %b %Y') %></td>
-                </tr>
-                </tbody>
-              </table>
-              <%= link_to "<- Powrot", adverts_path, class: "btn btn-primary" %>
-              <div class="pull-right">
-                <%= link_to "Przejdz do oferty", @advert.url, class: "btn btn-primary" %>
-              </div>
+              <%= form_for(@advert) do |f| %>
+                <table class="table table-user-information">
+                  <tbody>
+                  <tr>
+                    <td>Kategoria:</td>
+                    <td><%= f.text_field :job_category, value: @advert.job_category.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Miasto:</td>
+                    <td><%= f.text_field :city, value: @advert.city.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Wojewodztwo:</td>
+                    <td><%= f.text_field :province, value: @advert.city.province.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Firma:</td>
+                    <td><%= f.text_field :company, value: @advert.company.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Stanowisko:</td>
+                    <td><%= f.text_field :appointment, value: @advert.appointment %></td>
+                  </tr>
+                  <tr>
+                    <td>Data ogloszenia:</td>
+                    <td>
+                      <%= f.date_field :date_adv_added, value: @advert.date_adv_added.strftime('%Y-%m-%d') %></td>
+                  </tr>
+                  <tr>
+                    <td>Oferta wygasa:</td>
+                    <td><%= f.date_field :date_adv_expiration, value: @advert.date_expiration.strftime('%Y-%m-%d') %></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <%= link_to "<- Powrot", adverts_path, class: "btn" %>
+                <%= link_to "Przejdz do oferty", @advert.url, class: "btn" %>
+                <div class="pull-right">
+                  <%= f.submit "Zapisz", class: "btn btn-primary" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

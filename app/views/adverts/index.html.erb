@@ -7,21 +7,26 @@
         <th>ID</th>
         <th>URL</th>
         <th>Firma</th>
-        <th>Stanowisko</th>
+        <th>Kategoria Pracy</th>
         <th>Miasto</th>
+        <th>Wojewodztwo</th>
+        <th>Stanowisko</th>
         <th>Data dodania do listy</th>
       </tr>
       </thead>
       <tbody>
       <% @adverts.each do |a| %>
-          <tr>
-            <td><%= a.id %></td>
-            <td><%= link_to "Szczegoly", action: "show", id: a %></td>
-            <td><%= a.company.name %></td>
-            <td><%= a.appointment %></td>
-            <td><%= a.city.name %></td>
-            <td><%= a.date_adv_link_added %></td>
-          </tr>
+        <tr>
+          <td><%= a.id %></td>
+          <td><%= link_to "Szczegoly", action: "show", id: a %></td>
+          <td><%= a.job_category.name %></td>
+          <td><%= a.city.name %></td>
+          <td><%= a.city.province.name %></td>
+          <td><%= a.company.name %></td>
+          <td><%= a.appointment %></td>
+          <td><%= a.date_adv_added %></td>
+          <td><%= a.date_expiration %></td>
+        </tr>
       <% end %>
       </tbody>
     </table>

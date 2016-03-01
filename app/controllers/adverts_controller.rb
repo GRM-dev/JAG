@@ -1,4 +1,6 @@
 class AdvertsController < ApplicationController
+
+
   def index
     @adverts = Advert.all
   end
@@ -11,7 +13,11 @@ class AdvertsController < ApplicationController
     @advert = Advert.find(params[:id])
   end
 
-  def destroy
+  def update
+    redirect_to('/')
+  end
 
+  def destroy
+    Advert.delete(params[:id])
   end
 end
