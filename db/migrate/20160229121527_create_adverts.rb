@@ -10,6 +10,7 @@ class CreateAdverts < ActiveRecord::Migration
       t.references :company
       t.references :job_category
       t.references :city
+      t.references :site
 
       t.timestamps null: false
     end

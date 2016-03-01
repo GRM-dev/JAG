@@ -1,3 +1,6 @@
 class Site < ActiveRecord::Base
-  belongs_to :advert
+  has_many :advert
+
+  validates :name, presence: true, uniqueness: true
+  validates :url, presence: true, uniqueness: true
 end

@@ -15,8 +15,8 @@
  */
 
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
@@ -34,10 +34,12 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -50,6 +52,7 @@ body {
 body > .container {
     padding: 60px 15px 0;
 }
+
 .container .text-muted {
     margin: 20px 0;
 }
@@ -64,7 +67,7 @@ code {
 }
 
 .form {
-    text-align:center;
+    text-align: center;
     margin: 0 auto 10px;
     padding: 20px 0 10px 0;
     font-size: 16px;
@@ -73,4 +76,26 @@ code {
 
 .jumbotron {
     margin-bottom: 0px;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+
+.toppad {
+    margin-top: 20px;
+}
+
+.pull-right > .row {
+    display: flex;
+    margin-bottom: 10px;
+    margin-right: 5px;
 }

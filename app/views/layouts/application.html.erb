@@ -28,21 +28,21 @@
               <span class="icon-bar"></span>
             </button>
           </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="menubar-header">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active">
+              <li <%= 'class=active' if current_page?(controller: 'homes') %>>
                 <%= link_to root_path do %>
                     <strong>Strona Startowa</strong>
                 <% end %>
               </li>
-              <li>
-                <a href="#">Człowiek szuka pracy</a>
+              <li <%= 'class=active' if current_page?(controller: 'adverts') %>>
+                <%= link_to "Człowiek szuka pracy", controller: 'adverts' %>
               </li>
-              <li>
-                <a href="#">Praca szuka człowieka</a>
+              <li <%= 'class=active' if current_page?(controller: 'profiles') %>>
+                <%= link_to "Praca szuka człowieka", controller: 'profiles' %>
               </li>
-              <li>
-                <a href="info">O co chodzi?</a>
+              <li <%= 'class=active' if current_page?(controller: 'static_pages', action: 'info') %>>
+                <%= link_to "O co chodzi?", "info" %>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

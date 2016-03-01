@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  get '/profile' => 'profiles#index', as: :profile
+  resources :sessions
+  get '/profiles' => 'profiles#index', as: :profile
   get '/info'=> 'static_pages#info'
-  get '/findjob' => 'jobs#index'
-  get '/adverts' => 'adverts#index', as: :advert
-  get '/adverts/:id' => 'adverts#show'
+  get '/findjob' => 'jobs#index', as: :job
+  resources :adverts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

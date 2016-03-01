@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160229142157) do
     t.integer  "company_id",          limit: 4
     t.integer  "job_category_id",     limit: 4
     t.integer  "city_id",             limit: 4
+    t.integer  "site_id",             limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
