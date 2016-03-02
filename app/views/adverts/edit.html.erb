@@ -36,8 +36,8 @@
                   <%= f.form_group :verified do %>
                       <%= f.check_box :verified, label: "Zweryfikowane", value: @advert.verified %>
                   <% end %>
-                  <%= link_to "<- Powrot", advert_path(@advert), class: "btn" %>
-                  <%= link_to "Przejdz do oferty", @advert.url, class: "btn" %>
+                  <%= link_to "<- Powrot", advert_path(@advert), class: "btn btn-default" %>
+                  <%= link_to "Przejdz do oferty", @advert.url, class: "btn btn-default" %>
                   <div class="pull-right">
                     <%= f.submit "Zapisz", class: "btn btn-primary" %>
                   </div>

@@ -1,7 +1,7 @@
 // Place all the styles related to the Adverts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$break-small: 800px;
+$break-small: 940px;
 $break-large: 1200px;
 
 @import "bootstrap";
@@ -10,7 +10,10 @@ $break-large: 1200px;
   overflow: hidden;
 
   @media (max-width: $break-small) {
-    overflow: scroll;
+    overflow-x: scroll;
+    .table-responsive {
+      border:none !important;
+    }
   }
   @media (min-width: $break-large) {
 

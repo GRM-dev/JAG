@@ -29,7 +29,7 @@ html, body {
 }
 
 #header {
-    margin-bottom: 52px;
+    margin-bottom: 50px;
     background: #186c6c;
 }
 
@@ -121,4 +121,10 @@ code {
     display: flex;
     margin-bottom: 10px;
     margin-right: 5px;
+}
+
+body {
+  .container-fluid:first-of-type {
+    padding: 0px !important;
+  }
 }
