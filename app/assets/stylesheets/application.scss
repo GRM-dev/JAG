@@ -13,6 +13,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
+ *= require rails_bootstrap_forms
  */
 
 * {
@@ -52,6 +54,15 @@ body {
 
 body > .container {
     padding: 60px 15px 0;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: asset-url('glyphicons-halflings-regular.eot');
+  src: asset-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  asset-url('glyphicons-halflings-regular.woff') format('woff'),
+  asset-url('glyphicons-halflings-regular.ttf') format('truetype'),
+  asset-url('glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
 .container .text-muted {

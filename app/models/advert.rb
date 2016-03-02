@@ -11,4 +11,5 @@ class Advert < ActiveRecord::Base
   validates :city, presence: true
   validates :city, presence: true
   validates :job_category, presence: true
+  validates :date_last_verified, presence: true
 end

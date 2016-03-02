@@ -39,6 +39,8 @@ gem 'heroku'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'faker'
+gem 'font-awesome-rails'
+gem 'bootstrap_form'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

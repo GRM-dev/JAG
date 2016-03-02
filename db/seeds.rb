@@ -37,7 +37,7 @@ s2 = Faker::Internet.domain_name
 Company.create(name: comp1)
 JobCategory.create(name: jc1)
 City.create(name: city1, province: Province.find(Faker::Number.between(1,16)))
-Site.create(name: s1)
+Site.create(name: s1, url: 'http://www.'+s1)
 
 Company.create(name: comp2)
 JobCategory.create(name: jc2)

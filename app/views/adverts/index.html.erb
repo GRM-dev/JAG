@@ -6,12 +6,13 @@
       <tr>
         <th>ID</th>
         <th>URL</th>
-        <th>Firma</th>
         <th>Kategoria Pracy</th>
         <th>Miasto</th>
         <th>Wojewodztwo</th>
+        <th>Firma</th>
         <th>Stanowisko</th>
-        <th>Data dodania do listy</th>
+        <th>Dodano</th>
+        <th>Wygasa</th>
       </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@
           <td><%= a.appointment %></td>
           <td><%= a.date_adv_added %></td>
           <td><%= a.date_expiration %></td>
+          <td><%= check_box_tag 'cb_adv_ver_'+a.id.to_s, 'accepted', a.verified, disabled: true %></td>
         </tr>
       <% end %>
       </tbody>

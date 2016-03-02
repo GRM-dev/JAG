@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20160229142157) do
     t.date     "date_adv_added"
     t.date     "date_adv_link_added",             null: false
     t.date     "date_expiration"
+    t.boolean  "verified"
+    t.date     "date_last_verified"
     t.integer  "company_id",          limit: 4
     t.integer  "job_category_id",     limit: 4
     t.integer  "city_id",             limit: 4
@@ -54,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160229142157) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "url",        limit: 255
+    t.string   "name",       limit: 255, null: false
+    t.string   "url",        limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

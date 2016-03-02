@@ -12,7 +12,7 @@
                   link_to @advert.site.name, @advert.site.url
                 else
                   printf 'undefinded'
-            end %>
+                end %>
           </h3>
         </div>
         <div class="panel-body">
@@ -21,49 +21,26 @@
                 <div class="col-md-3 col-lg-3 " align="center">
                   <%= if (@advert.site != nil)
                         image_tag @advert.site.name+".png", title: "Site Logo", class: "img-circle img-responsive"
-                  end %>
+                      end %>
                 </div>
             <% end %>
             <div class=" col-md-9 col-lg-9 ">
-              <%= form_for(@advert) do |f| %>
-                <table class="table table-user-information">
-                  <tbody>
-                  <tr>
-                    <td>Kategoria:</td>
-                    <td><%= f.text_field :job_category, value: @advert.job_category.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Miasto:</td>
-                    <td><%= f.text_field :city, value: @advert.city.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Wojewodztwo:</td>
-                    <td><%= f.text_field :province, value: @advert.city.province.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Firma:</td>
-                    <td><%= f.text_field :company, value: @advert.company.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Stanowisko:</td>
-                    <td><%= f.text_field :appointment, value: @advert.appointment %></td>
-                  </tr>
-                  <tr>
-                    <td>Data ogloszenia:</td>
-                    <td>
-                      <%= f.date_field :date_adv_added, value: @advert.date_adv_added.strftime('%Y-%m-%d') %></td>
-                  </tr>
-                  <tr>
-                    <td>Oferta wygasa:</td>
-                    <td><%= f.date_field :date_adv_expiration, value: @advert.date_expiration.strftime('%Y-%m-%d') %></td>
-                  </tr>
-                  </tbody>
-                </table>
-                <%= link_to "<- Powrot", adverts_path, class: "btn" %>
-                <%= link_to "Przejdz do oferty", @advert.url, class: "btn" %>
-                <div class="pull-right">
-                  <%= f.submit "Zapisz", class: "btn btn-primary" %>
-                </div>
+              <%= bootstrap_form_for(@advert, layout: :horizontal, label_col: "col-sm-6", control_col: "col-sm-6") do |f| %>
+                  <%= f.text_field :job_category, label: "Kategoria", value: @advert.job_category.name %>
+                  <%= f.text_field :city, label: "Miasto", value: @advert.city.name %>
+                  <%= f.text_field :province, label: "Wojewodztwo", value: @advert.city.province.name %>
+                  <%= f.text_field :company, label: "Firma", value: @advert.company.name %>
+                  <%= f.text_field :appointment, label: "Stanowisko", value: @advert.appointment %>
+                  <%= f.date_field :date_adv_added, label: "Ogloszono", value: @advert.date_adv_added.strftime('%Y-%m-%d') %>
+                  <%= f.date_field :date_adv_expiration, label: "Wygasa", value: @advert.date_expiration.strftime('%Y-%m-%d') %>
+                  <%= f.form_group :verified do %>
+                      <%= f.check_box :verified, label: "Zweryfikowane", value: @advert.verified %>
+                  <% end %>
+                  <%= link_to "<- Powrot", advert_path(@advert), class: "btn" %>
+                  <%= link_to "Przejdz do oferty", @advert.url, class: "btn" %>
+                  <div class="pull-right">
+                    <%= f.submit "Zapisz", class: "btn btn-primary" %>
+                  </div>
               <% end %>
             </div>
           </div>
