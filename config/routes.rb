@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :sessions
-  get '/profiles' => 'profiles#index', as: :profile
+  get '/profiles' => 'profiles#index', as: :profiles
+  get '/profile' => 'profiles#show', as: :profile
   get '/info'=> 'static_pages#info'
   get '/findjob' => 'jobs#index', as: :job
   resources :adverts

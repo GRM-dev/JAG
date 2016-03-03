@@ -1,5 +1,5 @@
 class AdvertsController < ApplicationController
-
+  before_action :require_mod, only: [:edit, :destroy]
 
   def index
     @adverts = Advert.all
@@ -14,6 +14,7 @@ class AdvertsController < ApplicationController
   end
 
   def update
+
     redirect_to('/')
   end
 

@@ -18,11 +18,11 @@
         <div class="panel-body">
           <div class="row">
             <%= link_to @advert.url do %>
-              <div class="col-md-3 col-lg-3 " align="center">
-                <%= if (@advert.site != nil)
-                      image_tag @advert.site.name+".png", title: "Site Logo", class: "img-circle img-responsive"
-                end %>
-              </div>
+                <div class="col-md-3 col-lg-3 " align="center">
+                  <%= if (@advert.site != nil)
+                        image_tag @advert.site.name+".png", title: "Site Logo", class: "img-circle img-responsive"
+                      end %>
+                </div>
             <% end %>
             <div class=" col-md-9 col-lg-9 ">
               <table class="table table-user-information">
@@ -67,16 +67,22 @@
         </div>
         <div class="panel-footer">
           <a data-original-title="Send Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-            <span class="pull-right">
+          <% if current_user %>
+              <span class="pull-right">
               <div class="row">
-                <%= button_to edit_advert_path(@advert), class: "btn btn-sm btn-warning", method: "get", :title => 'Edytuj', :rel => 'tooltip' do %>
-                    <i class="glyphicon glyphicon-edit"></i>
+                <% if current_user.moderator? %>
+                    <%= button_to edit_advert_path(@advert), class: "btn btn-sm btn-warning", method: "get", :title => 'Edytuj', :rel => 'tooltip' do %>
+                        <i class="glyphicon glyphicon-edit"></i>
+                    <% end %>
                 <% end %>
-                <%= button_to(advert_path(@advert), class: "btn btn-sm btn-danger", method: "delete", :title => 'Usun', :rel => 'tooltip', remote: true, data: {confirm: 'Usunac wybrane ogloszenie?'}) do %>
-                    <i class="glyphicon glyphicon-remove"></i>
+                <% if current_user.admin? %>
+                    <%= button_to(advert_path(@advert), class: "btn btn-sm btn-danger", method: "delete", :title => 'Usun', :rel => 'tooltip', remote: true, data: {confirm: 'Usunac wybrane ogloszenie?'}) do %>
+                        <i class="glyphicon glyphicon-remove"></i>
+                    <% end %>
                 <% end %>
               </div>
-            </span>
+          </span>
+          <% end %>
         </div>
       </div>
     </div>

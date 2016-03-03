@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to '/login' unless current_user
+    redirect_to root_path unless current_user
+  end
+
+  def require_mod
+    redirect_to root_path unless current_user.moderator?
+  end
+
+  def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 end

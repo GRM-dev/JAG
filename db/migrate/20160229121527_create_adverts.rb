@@ -7,7 +7,7 @@ class CreateAdverts < ActiveRecord::Migration
       t.date :date_adv_link_added, null: false
       t.date :date_expiration
       t.boolean :verified, default: false
-      t.date :date_last_verified
+      t.date :date_last_verified, null: false, default: Time.now
 
       t.references :company
       t.references :job_category
