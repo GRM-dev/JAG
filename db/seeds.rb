@@ -50,9 +50,8 @@ JobCategory.create(name: jc2)
 City.create(name: city2, province: Province.find(Faker::Number.between(1,16)))
 Site.create(name: s2, url: 'http://www.'+s2)
 
-p1 = Profile.create()
 
-User.create(email: 'testmail@mail.test', password: '1234', profile_id: p1.id)
+User.create(email: 'testmail@mail.test', password: '1234')
 
 
 Advert.create(company: Company.find_by_name(comp1), job_category: JobCategory.find_by_name(jc1),
