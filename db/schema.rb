@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229142157) do
+ActiveRecord::Schema.define(version: 20160303185400) do
 
   create_table "adverts", force: :cascade do |t|
     t.string   "appointment",         limit: 255
-    t.string   "url",                 limit: 255
+    t.string   "url",                 limit: 255,                        null: false
     t.date     "date_adv_added"
-    t.date     "date_adv_link_added",             null: false
+    t.date     "date_adv_link_added",                                    null: false
     t.date     "date_expiration"
-    t.boolean  "verified"
-    t.date     "date_last_verified"
+    t.boolean  "verified",                        default: false
+    t.date     "date_last_verified",              default: '2016-03-04', null: false
     t.integer  "company_id",          limit: 4
     t.integer  "job_category_id",     limit: 4
     t.integer  "city_id",             limit: 4
     t.integer  "site_id",             limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 20160229142157) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "gender",     limit: 255, default: "undefined"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
@@ -62,12 +68,17 @@ ActiveRecord::Schema.define(version: 20160229142157) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string "name", limit: 255, default: "user", null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",           limit: 255,                  null: false
-    t.string   "password_digest", limit: 255,                  null: false
-    t.string   "role",            limit: 255, default: "user"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "email",           limit: 255,             null: false
+    t.string   "password_digest", limit: 255,             null: false
+    t.integer  "role_id",         limit: 4,   default: 0
+    t.integer  "profile_id",      limit: 4,               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :sessions
   get '/profiles' => 'profiles#index', as: :profiles
   get '/profile' => 'profiles#show', as: :profile
+  resources :profiles
   get '/info'=> 'static_pages#info'
   get '/findjob' => 'jobs#index', as: :job
   resources :adverts

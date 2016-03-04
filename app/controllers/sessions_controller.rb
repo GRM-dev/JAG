@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @notice = params[:notice]
   end
 
   def create
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      redirect_to 'login'
+      redirect_to '/login', alert: "Bad mail/password!"
     end
   end
 

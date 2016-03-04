@@ -32,11 +32,11 @@
                     <strong>Strona Startowa</strong>
                 <% end %>
               </li>
-              <li <%= 'class=active' if current_page?(controller: 'adverts') %>>
-                <%= link_to "Człowiek szuka pracy", controller: 'adverts' %>
-              </li>
               <li <%= 'class=active' if current_page?(controller: 'profiles') %>>
-                <%= link_to "Praca szuka człowieka", controller: 'profiles' %>
+                <%= link_to "Człowiek szuka pracy", controller: 'profiles' %>
+              </li>
+              <li <%= 'class=active' if current_page?(controller: 'adverts') %>>
+                <%= link_to "Praca szuka człowieka", adverts_path %>
               </li>
               <li <%= 'class=active' if current_page?(controller: 'static_pages', action: 'info') %>>
                 <%= link_to "O co chodzi?", "info" %>

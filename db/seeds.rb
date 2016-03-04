@@ -25,6 +25,12 @@ Province.create(name: 'Warminsko-Mazurskie')
 Province.create(name: 'Wielkopolskie')
 Province.create(name: 'Zachodniopomorskie')
 
+UserRole.create(name: 'user')
+UserRole.create(name: 'advertiser')
+UserRole.create(name: 'mod')
+UserRole.create(name: 'admin')
+UserRole.create(name: 'hadmin')
+
 comp1 = Faker::Company.name
 jc1 = Faker::Company.profession
 city1 = Faker::Address.city
@@ -43,6 +49,11 @@ Company.create(name: comp2)
 JobCategory.create(name: jc2)
 City.create(name: city2, province: Province.find(Faker::Number.between(1,16)))
 Site.create(name: s2, url: 'http://www.'+s2)
+
+p1 = Profile.create()
+
+User.create(email: 'testmail@mail.test', password: '1234', profile_id: p1.id)
+
 
 Advert.create(company: Company.find_by_name(comp1), job_category: JobCategory.find_by_name(jc1),
               city: City.find_by_name(city1), appointment: Faker::Company.profession,
