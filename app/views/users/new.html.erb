@@ -1,14 +1,15 @@
 <div class="login">
   <div class="container">
-    <div class="notice">
-      <%= flash[:notice] %>
-    </div>
-    <div class="alert">
-      <%= flash[:alert] %>
-    </div>
     <div class="form">
       <h1>Rejestracja</h1>
-
+      <div class="notice">
+        <div class="alert-info">
+          <%= flash[:notice] %>
+        </div>
+        <div class="alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      </div>
       <%= form_for(@user) do |f| %>
           <div class="field">
             <div class="input-group">

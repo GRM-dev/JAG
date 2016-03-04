@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20160303185400) do
     t.datetime "updated_at",                                   null: false
   end
 
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
   create_table "provinces", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
