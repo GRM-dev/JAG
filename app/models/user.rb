@@ -12,18 +12,18 @@ class User < ActiveRecord::Base
   end
 
   def advertiser?
-    self.moderator? || self.role_id == 2
+    self.moderator? || self.user_role_id == 2
   end
 
   def moderator?
-    self.admin? || self.role_id == 3
+    self.admin? || self.user_role_id == 3
   end
 
   def admin?
-    self.head_admin? || self.role_id == 4
+    self.head_admin? || self.user_role_id == 4
   end
 
   def head_admin?
-    self.role_id == 5
+    self.user_role_id == 5
   end
 end
