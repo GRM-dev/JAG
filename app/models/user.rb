@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_one :profile
+  belongs_to :user_role
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true, format: { with: /\A\S{8,128}\z/}
