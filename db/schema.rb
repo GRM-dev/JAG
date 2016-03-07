@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304113912) do
+ActiveRecord::Schema.define(version: 20160304123748) do
 
   create_table "adverts", force: :cascade do |t|
     t.string   "appointment",         limit: 255
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 20160304113912) do
     t.datetime "updated_at",                                             null: false
   end
 
+  create_table "certificates", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string   "name",        limit: 255, null: false
     t.integer  "province_id", limit: 4,   null: false
@@ -42,6 +48,29 @@ ActiveRecord::Schema.define(version: 20160304113912) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "educations", force: :cascade do |t|
+    t.string   "school_name", limit: 255
+    t.string   "field",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "company_id",        limit: 4
+    t.integer  "responsibility_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "experiences", ["company_id"], name: "index_experiences_on_company_id", using: :btree
+  add_index "experiences", ["responsibility_id"], name: "index_experiences_on_responsibility_id", using: :btree
 
   create_table "job_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -64,9 +93,21 @@ ActiveRecord::Schema.define(version: 20160304113912) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "responsibilities", force: :cascade do |t|
+    t.string   "resp",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.string   "url",        limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -85,5 +126,7 @@ ActiveRecord::Schema.define(version: 20160304113912) do
 
   add_index "users", ["user_role_id"], name: "index_users_on_user_role_id", using: :btree
 
+  add_foreign_key "experiences", "companies"
+  add_foreign_key "experiences", "responsibilities"
   add_foreign_key "users", "user_roles"
 end
