@@ -5,6 +5,11 @@
 <div class="jumbotron">
   <div class="panel-body">
     <strong><%= @adverts.count %></strong>
+    <% if current_user && current_user.advertiser? %>
+      <div class="pull-right">
+        <%=button_to "Dodaj ogłoszenie", new_advert_path, method: "get", class: "btn btn-primary" %>
+      </div>
+    <% end %>
     <table class="table table-striped table-responsive">
       <thead>
       <tr>
@@ -18,7 +23,7 @@
         <th>Dodano</th>
         <th>Wygasa</th>
         <th>Zweryfikowany</th>
-        <% if current_user.moderator? %>
+        <% if current_user && current_user.moderator? %>
           <th>Operacje</th>
         <% end %>
       </tr>
@@ -36,7 +41,7 @@
           <td><%= a.date_adv_added %></td>
           <td><%= a.date_expiration %></td>
           <td><%= check_box_tag 'cb_adv_ver_'+a.id.to_s, 'accepted', a.verified, disabled: true %></td>
-          <% if current_user.moderator? %>
+          <% if current_user && current_user.moderator? %>
             <td>
               <div id="buuton-row" class="row">
                 <%= button_to edit_advert_path(a), class: "btn btn-sm btn-warning", method: "get", :title => 'Edytuj', :rel => 'tooltip' do %>

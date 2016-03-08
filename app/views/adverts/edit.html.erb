@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
       <p>Link do ogloszenia dodany dnia:</p>
-      <p class=" text-info"><%= @advert.date_adv_link_added.strftime('%e %b %Y') %></p>
+      <p class=" text-info"><%= @advert.date_link_added.strftime('%e %b %Y') %></p>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info">
@@ -32,7 +32,7 @@
                   <%= f.text_field :company, label: "Firma", value: @advert.company.name %>
                   <%= f.text_field :appointment, label: "Stanowisko", value: @advert.appointment %>
                   <%= f.date_field :date_adv_added, label: "Ogloszono", value: @advert.date_adv_added.strftime('%Y-%m-%d') %>
-                  <%= f.date_field :date_adv_expiration, label: "Wygasa", value: @advert.date_expiration.strftime('%Y-%m-%d') %>
+                  <%= f.date_field :date_expiration, label: "Wygasa", value: @advert.date_expiration.strftime('%Y-%m-%d') %>
                   <%= f.form_group :verified do %>
                       <%= f.check_box :verified, label: "Zweryfikowane", value: @advert.verified %>
                   <% end %>

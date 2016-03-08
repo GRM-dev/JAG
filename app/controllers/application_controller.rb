@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_advert
-    redirect_to root_path unless current_user.advertiser?
+    redirect_to root_path unless current_user && current_user.advertiser?
   end
 
   def require_mod
-    redirect_to root_path unless current_user.moderator?
+    redirect_to root_path unless current_user && current_user.moderator?
   end
 
   def require_admin
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user && current_user.admin?
   end
 end

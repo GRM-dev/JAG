@@ -39,12 +39,12 @@ Advert.create(company: Company.find_by_name(comp1), job_category: JobCategory.fi
               city: City.find_by_name(city1), appointment: Faker::Company.profession,
               url: Faker::Internet.url('jobs.advjobsfinder.pl'), site: Site.find_by_name(s1),
               date_adv_added: Faker::Date.between(200.days.ago, Date.today),
-              date_adv_link_added: Faker::Date.between(20.days.ago, Date.today),
+              date_link_added: Faker::Date.between(20.days.ago, Date.today),
               date_expiration: Faker::Date.forward(230))
 
 Advert.create(company: Company.find_by_name(comp2), job_category: JobCategory.find_by_name(jc2),
               city: City.find_by_name(city2), appointment: Faker::Company.profession,
               url: Faker::Internet.url('jobs.advjobs.pl'), site: Site.find_by_name(s2),
               date_adv_added: Faker::Date.between(200.days.ago, Date.today),
-              date_adv_link_added: Faker::Date.between(20.days.ago, Date.today),
+              date_link_added: Faker::Date.between(20.days.ago, Date.today),
               date_expiration: Faker::Date.forward(230))

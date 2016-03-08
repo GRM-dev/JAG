@@ -4,7 +4,7 @@ class CreateAdverts < ActiveRecord::Migration
       t.string :appointment
       t.string :url, null: false
       t.date :date_adv_added
-      t.date :date_adv_link_added, null: false
+      t.date :date_link_added, null: false
       t.date :date_expiration
       t.boolean :verified, default: false
       t.date :date_last_verified, null: false, default: Time.now

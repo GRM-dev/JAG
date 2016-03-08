@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Dodaj nowe ogłoszenie
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <%= link_to @advert.url do %>
+                <div class="col-md-3 col-lg-3 " align="center">
+                  <%= if (@advert.site != nil)
+                        image_tag @advert.site.name+".png", title: "Site Logo", class: "img-circle img-responsive"
+                      end %>
+                </div>
+            <% end %>
+            <div class=" col-md-9 col-lg-9 ">
+              <%= bootstrap_form_for(@advert, layout: :horizontal, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
+                  <%= fb.text_field :job_category, label: "Kategoria" %>
+                  <%= fb.text_field :city, label: "Miasto" %>
+                  <div class="form-group">
+                      <%= label_tag :city_province_id, "Wojewodztwo", value: "public", class: "control-label col-sm-6 required" %>
+                        <div class="col-sm-6">
+                            <%= collection_select :city, :province_id, Province.all, :id, :name, {label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
+                        </div>
+                  </div>
+                  <%= fb.text_field :company, label: "Firma" %>
+                  <%= fb.text_field :appointment, label: "Stanowisko"%>
+                  <%= fb.date_field :date_adv_added, label: "Ogloszono" %>
+                  <%= fb.date_field :date_expiration, label: "Wygasa" %>
+                  <%= fb.form_group :verified do %>
+                      <%= fb.check_box :verified, label: "Zweryfikowane" %>
+                  <% end %>
+                  <%= link_to "<- Anuluj", adverts_path, class: "btn btn-default" %>
+                  <div class="pull-right">
+                    <%= fb.submit "Stwórz", class: "btn btn-primary" %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
