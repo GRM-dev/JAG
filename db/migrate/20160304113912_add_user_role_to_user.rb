@@ -4,7 +4,7 @@ class AddUserRoleToUser < ActiveRecord::Migration
     UserRole.create(id: 2, name: 'advertiser')
     UserRole.create(id: 3, name: 'mod')
     UserRole.create(id: 4, name: 'admin')
-    UserRole.create(id: 5, name: 'hadmin')
+    UserRole.create(id: 5, name: 'headadmin')
 
     add_reference :users, :user_role, index: true, foreign_key: true, default: UserRole.find(1)
   end

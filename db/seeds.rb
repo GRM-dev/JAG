@@ -28,7 +28,11 @@ City.create(name: city2, province: Province.find(Faker::Number.between(1,16)))
 Site.create(name: s2, url: 'http://www.'+s2)
 
 
-User.create(email: 'testmail@mail.test', password: '1234')
+User.create(email: 'user@t', password: '1234')
+User.create(email: 'adv@t', password: '1234', user_role: UserRole.find_by_name('advertiser'))
+User.create(email: 'mod@t', password: '1234', user_role: UserRole.find_by_name('moderator'))
+User.create(email: 'admin@t', password: '1234', user_role: UserRole.find_by_name('admin'))
+User.create(email: 'hadmin@t', password: '1234', user_role: UserRole.find_by_name('headadmin'))
 
 
 Advert.create(company: Company.find_by_name(comp1), job_category: JobCategory.find_by_name(jc1),

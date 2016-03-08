@@ -18,6 +18,9 @@
         <th>Dodano</th>
         <th>Wygasa</th>
         <th>Zweryfikowany</th>
+        <% if current_user.moderator? %>
+          <th>Operacje</th>
+        <% end %>
       </tr>
       </thead>
       <tbody>
@@ -33,6 +36,20 @@
           <td><%= a.date_adv_added %></td>
           <td><%= a.date_expiration %></td>
           <td><%= check_box_tag 'cb_adv_ver_'+a.id.to_s, 'accepted', a.verified, disabled: true %></td>
+          <% if current_user.moderator? %>
+            <td>
+              <div id="buuton-row" class="row">
+                <%= button_to edit_advert_path(a), class: "btn btn-sm btn-warning", method: "get", :title => 'Edytuj', :rel => 'tooltip' do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+                <% if current_user.admin? %>
+                  <%= button_to(advert_path(a), class: "btn btn-sm btn-danger", method: "delete", :title => 'Usun', :rel => 'tooltip', remote: true, data: {confirm: 'Usunac wybrane ogloszenie?'}) do %>
+                    <i class="glyphicon glyphicon-remove"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>

@@ -33,9 +33,6 @@ gem 'rspec-rails'
 gem 'rspec-context-private'
 gem 'rspec-html-matchers'
 
-gem 'rails_12factor'
-
-gem 'heroku'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'faker'
@@ -61,3 +58,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku'
+end

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160304123748) do
     t.date     "date_adv_link_added",                                    null: false
     t.date     "date_expiration"
     t.boolean  "verified",                        default: false
-    t.date     "date_last_verified",              default: '2016-03-04', null: false
+    t.date     "date_last_verified",              default: '2016-03-08', null: false
     t.integer  "company_id",          limit: 4
     t.integer  "job_category_id",     limit: 4
     t.integer  "city_id",             limit: 4
