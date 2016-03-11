@@ -33,6 +33,9 @@ gem 'rspec-rails'
 gem 'rspec-context-private'
 gem 'rspec-html-matchers'
 
+gem "cocoon"
+gem 'simple_form'
+
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'faker'

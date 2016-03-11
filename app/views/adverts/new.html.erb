@@ -8,6 +8,14 @@
           </h3>
         </div>
         <div class="panel-body">
+          <div class="notice">
+            <div class="alert-info">
+              <%= flash[:notice] %>
+            </div>
+            <div class="alert-danger">
+              <%= flash[:alert] %>
+            </div>
+          </div>
           <div class="row">
             <%= link_to @advert.url do %>
                 <div class="col-md-3 col-lg-3 " align="center">
@@ -17,17 +25,19 @@
                 </div>
             <% end %>
             <div class=" col-md-9 col-lg-9 ">
-              <%= bootstrap_form_for(@advert, layout: :horizontal, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
-                  <%= fb.text_field :job_category, label: "Kategoria" %>
-                  <%= fb.text_field :city, label: "Miasto" %>
-                  <div class="form-group">
-                      <%= label_tag :city_province_id, "Wojewodztwo", value: "public", class: "control-label col-sm-6 required" %>
-                        <div class="col-sm-6">
-                            <%= collection_select :city, :province_id, Province.all, :id, :name, {label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
-                        </div>
-                  </div>
-                  <%= fb.text_field :company, label: "Firma" %>
-                  <%= fb.text_field :appointment, label: "Stanowisko"%>
+              <%= bootstrap_form_for(@advert, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
+                  <%= fb.url_field :url, label: "Link do ogłoszenia" %>
+                  <%= fb.fields_for :city do |c| %>
+                    <%= c.collection_select :province_id, Province.all, :id, :name, {prompt: "Wybierz ...", label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
+                    <%= c.text_field :name, label: "Miasto" %>
+                  <% end %>
+                  <%= fb.fields_for :jobcategory do |c| %>
+                    <%= c.text_field :name, label: "Kategoria" %>
+                  <% end %>
+                  <%= fb.fields_for :company do |c| %>
+                    <%= c.text_field :name, label: "Firma" %>
+                  <% end %>
+                  <%= fb.text_field :appointment, label: "Stanowisko" %>
                   <%= fb.date_field :date_adv_added, label: "Ogloszono" %>
                   <%= fb.date_field :date_expiration, label: "Wygasa" %>
                   <%= fb.form_group :verified do %>

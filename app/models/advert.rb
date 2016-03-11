@@ -4,7 +4,9 @@ class Advert < ActiveRecord::Base
   belongs_to :city
   belongs_to :site
   
+  accepts_nested_attributes_for :job_category
   accepts_nested_attributes_for :city
+  accepts_nested_attributes_for :company
 
   validates :company, presence: true
   validates :city, presence: true
