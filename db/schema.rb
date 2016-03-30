@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20160304123748) do
     t.string   "appointment",        limit: 255
     t.string   "url",                limit: 255,                        null: false
     t.date     "date_adv_added"
-    t.date     "date_link_added",                                       null: false
+    t.date     "date_link_added",                default: '2016-03-11', null: false
     t.date     "date_expiration"
     t.boolean  "verified",                       default: false
-    t.date     "date_last_verified",             default: '2016-03-08', null: false
+    t.date     "date_last_verified",             default: '2016-03-11', null: false
     t.integer  "company_id",         limit: 4
-    t.integer  "job_category_id",    limit: 4
+    t.integer  "job_category_id",    limit: 4,                          null: false
     t.integer  "city_id",            limit: 4
-    t.integer  "site_id",            limit: 4
+    t.integer  "site_id",            limit: 4,                          null: false
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
   end

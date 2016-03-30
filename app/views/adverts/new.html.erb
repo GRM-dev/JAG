@@ -1,10 +1,11 @@
+<%- model_class = Advert -%>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">
-            Dodaj nowe ogłoszenie
+            <%= t 'helpers.add_new_n', :model => model_class.model_name.human.downcase %>
           </h3>
         </div>
         <div class="panel-body">
@@ -21,20 +22,22 @@
                 <div class="col-md-3 col-lg-3 " align="center">
                   <%= if (@advert.site != nil)
                         image_tag @advert.site.name+".png", title: "Site Logo", class: "img-circle img-responsive"
-                      end %>
+                end %>
                 </div>
             <% end %>
             <div class=" col-md-9 col-lg-9 ">
               <%= bootstrap_form_for(@advert, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
-                  <%= fb.url_field :url, label: "Link do ogłoszenia" %>
-                  <%= fb.fields_for :city do |c| %>
-                    <%= c.collection_select :province_id, Province.all, :id, :name, {prompt: "Wybierz ...", label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
-                    <%= c.text_field :name, label: "Miasto" %>
-                  <% end %>
-                  <%= fb.fields_for :jobcategory do |c| %>
+                  <%= fb.url_field :url %>
+                  <div class="form-group">
+                    <%= label_tag "city_province_id", Province.model_name.human, class: "control-label" %>
+                    <%= collection_select :city, :province_id, Province.all, :id, :name,  {prompt: t('helpers.select.prompt'), label: "Wojewodztwo"}, { class: "selectpicker form-control"} %>
+                  </div>
+                  <%= fb.collection_select :city_id, City.all, :id, :name, {prompt: t('helpers.select.prompt'), label: "Miasto"}, { class: "selectpicker form-control" } %>
+                  <%= link_to t('helpers.add', model: City.model_name.human) + ' ...', '#new_city_modal', class: 'btn btn-default', data: {toggle: 'modal', target: '#new_city_modal'}, remote: true %>
+                  <%= fb.fields_for :job_category, @advert.job_category do |c| %>
                     <%= c.text_field :name, label: "Kategoria" %>
                   <% end %>
-                  <%= fb.fields_for :company do |c| %>
+                  <%= fb.fields_for :company, @advert.company do |c| %>
                     <%= c.text_field :name, label: "Firma" %>
                   <% end %>
                   <%= fb.text_field :appointment, label: "Stanowisko" %>
@@ -43,9 +46,9 @@
                   <%= fb.form_group :verified do %>
                       <%= fb.check_box :verified, label: "Zweryfikowane" %>
                   <% end %>
-                  <%= link_to "<- Anuluj", adverts_path, class: "btn btn-default" %>
+                  <%= link_to t('jag.cancel_w_back'), adverts_path, class: "btn btn-default" %>
                   <div class="pull-right">
-                    <%= fb.submit "Stwórz", class: "btn btn-primary" %>
+                    <%= fb.submit class: "btn btn-primary" %>
                   </div>
               <% end %>
             </div>
@@ -56,4 +59,20 @@
       </div>
     </div>
   </div>
+</div>
+<div id="new_city_modal" class="modal fade" role="dialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-target="#new_city_modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Dodaj nowe miasto</h4>
+            </div>
+            <div id="new_city_modal_body" class="modal-body">
+              <%= render partial: 'form_city', controller: 'cities', action: 'new', modal: true, locals: {city: City.new} %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="hide()" data-dismiss="modal" >Zamknij</button>
+          </div>
+        </div>
+    </div>
 </div>

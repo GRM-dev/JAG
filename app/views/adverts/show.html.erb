@@ -1,8 +1,9 @@
+<%- mc = Advert -%>
 <div class="container">
   <div class="row">
     <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
       <p>Link do ogloszenia dodany dnia:</p>
-      <p class=" text-info"><%= @advert.date_adv_link_added.strftime('%e %b %Y') %></p>
+      <p class=" text-info"><%= @advert.date_link_added.strftime('%e %b %Y') %></p>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info">
@@ -11,7 +12,7 @@
             <%= if (@advert.site != nil)
                   link_to @advert.site.name, @advert.site.url
                 else
-                  printf 'undefinded'
+                  printf 'undefined'
                 end %>
           </h3>
         </div>
@@ -28,37 +29,37 @@
               <table class="table table-user-information">
                 <tbody>
                 <tr>
-                  <td>Kategoria:</td>
+                  <td><%= mc.human_attribute_name :job_category %>:</td>
                   <td><%= @advert.job_category.name %></td>
                 </tr>
                 <tr>
-                  <td>Miasto:</td>
+                  <td><%= mc.human_attribute_name :city %>:</td>
                   <td><%= @advert.city.name %></td>
                 </tr>
                 <tr>
-                  <td>Wojewodztwo:</td>
+                  <td><%= City.human_attribute_name :province %>:</td>
                   <td><%= @advert.city.province.name %></td>
                 </tr>
                 <tr>
-                  <td>Firma:</td>
+                  <td><%= mc.human_attribute_name :company %>:</td>
                   <td><%= @advert.company.name %></td>
                 </tr>
                 <tr>
-                  <td>Stanowisko:</td>
+                  <td><%= mc.human_attribute_name :appointment %>:</td>
                   <td><%= @advert.appointment %></td>
                 </tr>
                 <tr>
-                  <td>Data ogloszenia:</td>
+                  <td><%= mc.human_attribute_name :date_adv_added %>:</td>
                   <td>
                     <% @advert.date_adv_added.strftime('%e %b %Y') %></td>
                 </tr>
                 <tr>
-                  <td>Oferta wygasa:</td>
+                  <td><%= mc.human_attribute_name :job_category %>:</td>
                   <td><%= @advert.date_expiration.strftime('%e %b %Y') %></td>
                 </tr>
                 </tbody>
               </table>
-              <%= link_to "<- Powrot", adverts_path, class: "btn btn-primary" %>
+              <%= link_to t('jag.go_back'), adverts_path, class: "btn btn-primary" %>
               <div class="pull-right">
                 <%= link_to "Przejdz do oferty", @advert.url, class: "btn btn-primary" %>
               </div>
@@ -66,17 +67,19 @@
           </div>
         </div>
         <div class="panel-footer">
-          <a data-original-title="Send Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+          <a data-original-title="<%= t('jag.send_msg') %>" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">
+            <i class="glyphicon glyphicon-envelope"></i>
+          </a>
           <% if current_user %>
               <span class="pull-right">
               <div class="row">
                 <% if current_user.moderator? %>
-                    <%= button_to edit_advert_path(@advert), class: "btn btn-sm btn-warning", method: "get", :title => 'Edytuj', :rel => 'tooltip' do %>
+                    <%= button_to edit_advert_path(@advert), class: "btn btn-sm btn-warning", method: "get", :title => t('helpers.links.edit'), :rel => 'tooltip' do %>
                         <i class="glyphicon glyphicon-edit"></i>
                     <% end %>
                 <% end %>
                 <% if current_user.admin? %>
-                    <%= button_to(advert_path(@advert), class: "btn btn-sm btn-danger", method: "delete", :title => 'Usun', :rel => 'tooltip', remote: true, data: {confirm: 'Usunac wybrane ogloszenie?'}) do %>
+                    <%= button_to(advert_path(@advert), class: "btn btn-sm btn-danger", method: "delete", :title => t('helpers.links.destroy'), :rel => 'tooltip', remote: true, data: {confirm: t('.delete_verify_q')}) do %>
                         <i class="glyphicon glyphicon-remove"></i>
                     <% end %>
                 <% end %>

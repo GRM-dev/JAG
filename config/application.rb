@@ -21,6 +21,10 @@ module Jag
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    
+    config.i18n.available_locales = [:pl]
+    config.i18n.default_locale = :pl
+     
     config.active_record.raise_in_transactional_callbacks = true
     config.web_console.whitelisted_ips = "192.168.1.16"
     config.assets.paths << "#{Rails}/vendor/assets/fonts"

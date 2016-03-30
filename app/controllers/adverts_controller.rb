@@ -16,23 +16,20 @@ class AdvertsController < ApplicationController
 
   def new
     @advert = Advert.new
-    city = City.new
-    company = Company.new
-    @advert.city = city
-    @advert.company = company
+    @advert.city = City.new
+    @advert.job_category = JobCategory.new
+    @advert.company = Company.new
   end
   
   def create
     ad = advert_params
     @advert = Advert.new(ad)
-    if JobCategory.find_by_name(jc_params) == nil
-      JobCategory.create(name: jc_params)
-    end
-    @advert.job_category = JobCategory.find_by_name(jc_params)
-    @advert.date_link_added = DateTime.now
     @advert.site = get_site_by_name(@advert.url)
+    # @advert.job_category = get_jc
+    # TODO: dates if nil!!
+    # byebug
     if(@advert.save)
-      redirect_to root_path
+      redirect_to edit_advert_path(@advert), notice: "Advert created succesfully!"
     else
       $stderr.puts @advert.errors.messages
       redirect_to :back, alert: "Query failed. Check if all fields filled and try again later"
@@ -40,7 +37,9 @@ class AdvertsController < ApplicationController
   end
 
   def update
+    @advert = Advert.find(params[:id])
     # TODO: implement
+    
     redirect_to('/')
   end
 
@@ -48,20 +47,46 @@ class AdvertsController < ApplicationController
     Advert.delete(params[:id])
   end
   
+  def create_city
+    @city = City.new(city_params)
+    respond_to do |format|
+      if @city.save
+        format.html { redirect_to @city, notice: 'Miasto dodane.' }
+        format.json { render action: 'show', status: :created, location: @city }
+        format.js   { render action: 'show', status: :created, location: @city }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @city.errors, status: :unprocessable_entity }
+        format.js   { render json: @city.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   def advert_params
-    params.require(:advert).permit(:url, :date_adv_added, :date_expiration, :appointment, :verified, job_category_attributes: [:name], company_attributes: [:name], city_attributes: [:name, :province_id])
+    params.require(:advert).permit(:url, :date_adv_added, :date_expiration, :appointment, :verified, :city_id, :province_id, company_attributes: [:id, :name], job_category_attributes: [:id, :name])
   end
   
-  def jc_params
-    params[:advert][:jobcategory][:name]
+  private
+  def city_params
+      params.require(:city).permit(:id, :name, :province_id)
   end
+  
+=begin
+  def get_jc
+    jc = params[:advert][:jobcategory][:name]
+    if JobCategory.find_by_name(jc) == nil
+      JobCategory.create(name: jc)
+    end
+    JobCategory.find_by_name(jc)
+  end
+=end
   
   def get_site_by_name(url)
     site = URI.parse(url).host
-    site ||= "undefined"
+    site ||= "other"
     if(Site.find_by_name(site) == nil)
-      Site.new(name: site)
+      Site.create(name: site, url: 'http://'+site)
     else
       Site.find_by_name(site)
     end

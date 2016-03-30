@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :profiles
   get '/info'=> 'static_pages#info'
   get '/findjob' => 'jobs#index', as: :job
-  resources :adverts
+  resources :adverts do
+    post 'create_city'
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

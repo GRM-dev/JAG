@@ -1,14 +1,14 @@
 <div class="content">
   <%- model_class = Profile -%>
   <div class="page-header">
-    <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    <h1><%= t 'jag.profiles.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:gender) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= t 'jag.profiles.id', :default => model_class.human_attribute_name(:id) %></th>
+      <th><%= t 'jag.gender', :default => model_class.human_attribute_name(:gender) %></th>
+      <th><%=t 'jag.profiles.created_at', :default =>  model_class.human_attribute_name(:created_at) %></th>
       <th><%= t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     </thead>
@@ -16,7 +16,7 @@
     <% @profiles.each do |profile| %>
         <tr>
           <td><%= link_to profile.id, profile_path(profile) %></td>
-          <td><%= profile.gender %></td>
+          <td><%= (profile.gender == 'undefined') || (profile.gender == 'NaN') ? t('jag.undefined') : profile.gender %></td>
           <td><%= l profile.created_at %></td>
           <td>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),

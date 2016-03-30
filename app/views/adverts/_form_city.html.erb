@@ -1,0 +1,16 @@
+<%= bootstrap_form_for(city, url: "create_city", label_col: "col-sm-6", control_col: "col-sm-6", remote: true) do |c| %>
+    <% if city.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@city.errors.count, "error") %> prohibited this person from being saved:</h2>
+    
+          <ul>
+          <% city.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= c.collection_select :province_id, Province.all, :id, :name, {label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
+    <%= c.text_field :name, label: "Nazwa Miasta", class: "selectpicker form-control" %>
+    <%= c.submit "Dodaj", class: "btn btn-primary" %>
+<% end %>
