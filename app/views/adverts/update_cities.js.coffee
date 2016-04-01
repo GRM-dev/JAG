@@ -1,2 +1,4 @@
-$("#advert_city_id").empty()
-  .append("<%= escape_javascript(render(:partial => @cities)) %>")
+$("#advert_city_id")
+  .empty()
+  .append('<option>Wybierz miasto ...</option>')
+  .append("<%= j(render(:partial => @cities)) %>")

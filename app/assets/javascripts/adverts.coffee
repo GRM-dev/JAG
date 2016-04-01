@@ -4,22 +4,24 @@
 
 $ ->
   $(document).on 'change', '#city_province_id', (evt) ->
+    selected = $("#city_province_id option:selected")
     $.ajax 'update_cities',
       type: 'GET'
       dataType: 'script'
       data: {
-        country_id: $("#city_province_id option:selected").val()
+        province_id: selected.val()
       }
       error: (jqXHR, textStatus, errorThrown) ->
-        console.log("AJAX Error: #{textStatus}")
+        console.log("Blad w trakcie pobierania miast: #{textStatus}")
       success: (data, textStatus, jqXHR) ->
-        console.log("Dynamic country select OK!")
+        console.log("Pobrano miasta dla "+selected.text())
 
 $(document).ready ->
-  $(document).bind 'ajaxError', 'form#new_person', (event, jqxhr, settings, exception) ->
+  $(document).bind 'ajaxError', 'form#new_city', (event, jqxhr, settings, exception) ->
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
     return
   return
+  
 (($) ->
   $.fn.modal_success = ->
     @modal 'hide'

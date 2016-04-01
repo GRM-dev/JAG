@@ -25,19 +25,23 @@
                 end %>
                 </div>
             <% end %>
-            <div class=" col-md-9 col-lg-9 ">
+            <div class="col-md-12 col-lg-12">
               <%= bootstrap_form_for(@advert, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
                   <%= fb.url_field :url %>
-                  <div class="container--">
-                    <div class="row--">
-                      <div class="form-group">
-                        <%= label_tag "city_province_id", Province.model_name.human, class: "control-label" %>
-                        <%= collection_select :city, :province_id, Province.all, :id, :name,  {selected: Province.default.first.id}, { class: "selectpicker form-control"} %>
-                      </div>
-                      <%= fb.collection_select :city_id, @cities, :id, :name, {label: City.model_name.human}, { class: "selectpicker form-control" } %>
-                      <%= link_to t('helpers.add', model: City.model_name.human) + ' ...', new_city_path, class: 'btn btn-default' %> <%#data: {toggle: 'modal', target: '#new_city_modal'}, remote: true%>
+                    <div class="form-group">
+                      <%= label_tag "city_province_id", Province.model_name.human, class: "control-label" %>
+                      <%= collection_select :city, :province_id, Province.all, :id, :name,  {selected: Province.default.first.id}, { class: "selectpicker form-control"} %>
                     </div>
-                  </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                          <%= fb.collection_select :city_id, @cities, :id, :name, {label: City.model_name.human}, { class: "selectpicker form-control" } %>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                          <%= link_to t('helpers.add', model: City.model_name.human) + ' ...', new_city_path, remote: true, class: 'btn btn-default margin-top-add' %> <%# data: {toggle: 'modal', target: '#new_city_modal'} %>
+                        </div>
+                      </div>
+                    </div>
                   <%= fb.fields_for :job_category, @advert.job_category do |c| %>
                     <%= c.text_field :name, label: "Kategoria" %>
                   <% end %>

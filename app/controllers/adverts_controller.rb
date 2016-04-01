@@ -49,7 +49,7 @@ class AdvertsController < ApplicationController
   end
   
   def update_cities
-    @cities = City.where("province_id = ?", params[:province_id])
+    @cities = City.where(province_id: params[:province_id])
     respond_to do |format|
       format.js
     end
