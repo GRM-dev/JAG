@@ -2,6 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$ ->
+  $(document).on 'change', '#city_province_id', (evt) ->
+    $.ajax 'update_cities',
+      type: 'GET'
+      dataType: 'script'
+      data: {
+        country_id: $("#city_province_id option:selected").val()
+      }
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log("AJAX Error: #{textStatus}")
+      success: (data, textStatus, jqXHR) ->
+        console.log("Dynamic country select OK!")
+
 $(document).ready ->
   $(document).bind 'ajaxError', 'form#new_person', (event, jqxhr, settings, exception) ->
     $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)

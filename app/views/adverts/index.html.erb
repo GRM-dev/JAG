@@ -1,63 +1,65 @@
 <%- model_class = Advert -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human(count: 2) %></h1>
-</div>
-<div class="jumbotron">
-  <div class="panel-body">
-    <strong>Ilość ogłoszeń: <%= @adverts.count %></strong>
-    <% if current_user && current_user.advertiser? %>
-      <div class="pull-right">
-        <%=button_to t('helpers.add', model: model_class.model_name.human.downcase), new_advert_path, method: "get", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-    <table class="table table-striped table-responsive">
-      <thead>
-      <tr>
-        <th><%= t '.id' %></th>
-        <th><%= t '.url' %></th>
-        <th><%= t '.job_category' %></th>
-        <th><%= t '.city' %></th>
-        <th><%= t Province.model_name.human %></th>
-        <th><%= t '.company' %></th>
-        <th><%= t '.appointment' %></th>
-        <th><%= t '.added' %></th>
-        <th><%= t '.date_expiration' %></th>
-        <th><%= t '.verified' %></th>
-        <% if current_user && current_user.moderator? %>
-          <th><%= t 'helpers.actions' %></th>
-        <% end %>
-      </tr>
-      </thead>
-      <tbody>
-      <% @adverts.each do |a| %>
+<div class="content">
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(count: 2) %></h1>
+  </div>
+  <div class="jumbotron">
+    <div class="panel-body">
+      <strong>Ilość ogłoszeń: <%= @adverts.count %></strong>
+      <% if current_user && current_user.advertiser? %>
+        <div class="pull-right">
+          <%=button_to t('helpers.add', model: model_class.model_name.human.downcase), new_advert_path, method: "get", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <table class="table table-striped table-responsive">
+        <thead>
         <tr>
-          <td><%= a.id %></td>
-          <td><%= link_to t('jag.details'), action: "show", id: a %></td>
-          <td><%= a.job_category.name %></td>
-          <td><%= a.city.name %></td>
-          <td><%= a.city.province.name %></td>
-          <td><%= a.company.name %></td>
-          <td><%= a.appointment %></td>
-          <td><%= a.date_adv_added %></td>
-          <td><%= a.date_expiration %></td>
-          <td><%= check_box_tag 'cb_adv_ver_'+a.id.to_s, 'accepted', a.verified, disabled: true %></td>
+          <th><%= t '.id' %></th>
+          <th><%= t '.url' %></th>
+          <th><%= t '.job_category' %></th>
+          <th><%= t '.city' %></th>
+          <th><%= t Province.model_name.human %></th>
+          <th><%= t '.company' %></th>
+          <th><%= t '.appointment' %></th>
+          <th><%= t '.added' %></th>
+          <th><%= t '.date_expiration' %></th>
+          <th><%= t '.verified' %></th>
           <% if current_user && current_user.moderator? %>
-            <td>
-              <div id="buuton-row" class="row">
-                <%= button_to edit_advert_path(a), class: "btn btn-sm btn-warning", method: "get", :title => t('helpers.links.edit'), :rel => 'tooltip' do %>
-                  <i class="glyphicon glyphicon-edit"></i>
-                <% end %>
-                <% if current_user.admin? %>
-                  <%= button_to(advert_path(a), class: "btn btn-sm btn-danger", method: "delete", :title => t('helpers.links.destroy'), :rel => 'tooltip', remote: true, data: {confirm: t('.delete_verify_q')}) do %>
-                    <i class="glyphicon glyphicon-remove"></i>
-                  <% end %>
-                <% end %>
-              </div>
-            </td>
+            <th><%= t 'helpers.actions' %></th>
           <% end %>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @adverts.each do |a| %>
+          <tr>
+            <td><%= a.id %></td>
+            <td><%= link_to t('jag.details'), action: "show", id: a %></td>
+            <td><%= a.job_category.name %></td>
+            <td><%= a.city.name %></td>
+            <td><%= a.city.province.name %></td>
+            <td><%= a.company.name %></td>
+            <td><%= a.appointment %></td>
+            <td><%= a.date_adv_added %></td>
+            <td><%= a.date_expiration %></td>
+            <td><%= check_box_tag 'cb_adv_ver_'+a.id.to_s, 'accepted', a.verified, disabled: true %></td>
+            <% if current_user && current_user.moderator? %>
+              <td>
+                <div id="buuton-row" class="row">
+                  <%= button_to edit_advert_path(a), class: "btn btn-sm btn-warning", method: "get", :title => t('helpers.links.edit'), :rel => 'tooltip' do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+                  <% end %>
+                  <% if current_user.admin? %>
+                    <%= button_to(advert_path(a), class: "btn btn-sm btn-danger", method: "delete", :title => t('helpers.links.destroy'), :rel => 'tooltip', remote: true, data: {confirm: t('.delete_verify_q')}) do %>
+                      <i class="glyphicon glyphicon-remove"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

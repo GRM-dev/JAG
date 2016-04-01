@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
   root 'homes#index'
   get 'signup' => 'users#new'
-  resources :users
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  resources :sessions
   get '/profiles' => 'profiles#index', as: :profiles
   get '/profile' => 'profiles#show', as: :profile
-  resources :profiles
   get '/info'=> 'static_pages#info'
   get '/findjob' => 'jobs#index', as: :job
-  resources :adverts do
-    post 'create_city'
-  end
+  
+  get 'adverts/update_cities', as: :update_cities
+  
+  resources :users
+  resources :adverts, :cities, :profiles
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

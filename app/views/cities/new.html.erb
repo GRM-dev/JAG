@@ -1,0 +1,48 @@
+<%- model_class = City -%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= t 'helpers.add_new_n', :model => model_class.model_name.human.downcase %>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="notice">
+            <div class="alert-info">
+              <%= flash[:notice] %>
+            </div>
+            <div class="alert-danger">
+              <%= flash[:alert] %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center">
+            </div>
+            <div class=" col-md-9 col-lg-9 ">
+              <%= bootstrap_form_for(@city, label_col: "col-sm-6", control_col: "col-sm-6") do |c| %>
+                  <% if @city.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@city.errors.count, "error") %> prohibited this city from being saved:</h2>
+                  
+                        <ul>
+                        <% @city.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                  <% end %>
+                  <%= c.collection_select :province_id, Province.all, :id, :name, {label: "Wojewodztwo"}, { class: "selectpicker form-control" } %>
+                  <%= c.text_field :name, label: "Nazwa Miasta", class: "selectpicker form-control" %>
+                  <%= c.submit t('helpers.add', model: model_class.model_name.human), class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

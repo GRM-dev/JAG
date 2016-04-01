@@ -13,7 +13,7 @@ pl:
         other: 'Ogłoszenia'
       profile:
         one: 'Profil'
-        other: 'Profile'
+        other: 'Ludzie szukający pracy'
       user:
         one: 'Użytkopwnik'
         other: 'Użytkownicy'
@@ -277,7 +277,7 @@ pl:
     am: przed południem
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"
-      long: "%B %d, %Y %H:%M"
+      long: "%d %b %Y | %H:%M"
       short: "%d %b %H:%M"
     pm: po południu
   session:
@@ -298,9 +298,6 @@ pl:
     gender: Płeć
     undefined: Niesprecyzowane
     details: Szczegóły
-    profiles: 
-      title: Ludzie szukający pracy
-      created_at: "Dołączył"
     profile:
       title: Profil
       login_panel: Panel Logowania
@@ -324,9 +321,18 @@ pl:
       added: Dodane
     show:
       delete_verify_q: 'Usunąć ogłoszenie?'
+      created: "Advert created succesfully!"
     edit:
       delete_verify_q: 'Usunąć ogłoszenie?'
+    new:
+      failed: "Query failed. Check if all fields filled and try again later"
   city:
     index:
       name: Nazwa
       province: Województwo
+  profiles:
+    title: Ludzie szukający pracy
+    created_at: "Dołączył"
+    index:
+      delete_verify_q: 'Usunąć użytkownika?'
+      

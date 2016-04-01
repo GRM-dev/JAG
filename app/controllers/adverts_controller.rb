@@ -19,6 +19,7 @@ class AdvertsController < ApplicationController
     @advert.city = City.new
     @advert.job_category = JobCategory.new
     @advert.company = Company.new
+    @cities = City.where(province: Province.default)
   end
   
   def create
@@ -29,10 +30,10 @@ class AdvertsController < ApplicationController
     # TODO: dates if nil!!
     # byebug
     if(@advert.save)
-      redirect_to edit_advert_path(@advert), notice: "Advert created succesfully!"
+      redirect_to advert_path(@advert), notice: t('adverts.show.created')
     else
       $stderr.puts @advert.errors.messages
-      redirect_to :back, alert: "Query failed. Check if all fields filled and try again later"
+      redirect_to :back, alert: t('adverts.new.failed')
     end
   end
 
@@ -47,29 +48,16 @@ class AdvertsController < ApplicationController
     Advert.delete(params[:id])
   end
   
-  def create_city
-    @city = City.new(city_params)
+  def update_cities
+    @cities = City.where("province_id = ?", params[:province_id])
     respond_to do |format|
-      if @city.save
-        format.html { redirect_to @city, notice: 'Miasto dodane.' }
-        format.json { render action: 'show', status: :created, location: @city }
-        format.js   { render action: 'show', status: :created, location: @city }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
-        format.js   { render json: @city.errors, status: :unprocessable_entity }
-      end
+      format.js
     end
-  end
-
-  private
-  def advert_params
-    params.require(:advert).permit(:url, :date_adv_added, :date_expiration, :appointment, :verified, :city_id, :province_id, company_attributes: [:id, :name], job_category_attributes: [:id, :name])
   end
   
   private
-  def city_params
-      params.require(:city).permit(:id, :name, :province_id)
+  def advert_params
+    params.require(:advert).permit(:url, :date_adv_added, :date_expiration, :appointment, :verified, :city_id, :province_id, company_attributes: [:id, :name], job_category_attributes: [:id, :name])
   end
   
 =begin

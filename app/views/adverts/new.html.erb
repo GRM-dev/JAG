@@ -28,12 +28,16 @@
             <div class=" col-md-9 col-lg-9 ">
               <%= bootstrap_form_for(@advert, label_col: "col-sm-6", control_col: "col-sm-6") do |fb| %>
                   <%= fb.url_field :url %>
-                  <div class="form-group">
-                    <%= label_tag "city_province_id", Province.model_name.human, class: "control-label" %>
-                    <%= collection_select :city, :province_id, Province.all, :id, :name,  {prompt: t('helpers.select.prompt'), label: "Wojewodztwo"}, { class: "selectpicker form-control"} %>
+                  <div class="container--">
+                    <div class="row--">
+                      <div class="form-group">
+                        <%= label_tag "city_province_id", Province.model_name.human, class: "control-label" %>
+                        <%= collection_select :city, :province_id, Province.all, :id, :name,  {selected: Province.default.first.id}, { class: "selectpicker form-control"} %>
+                      </div>
+                      <%= fb.collection_select :city_id, @cities, :id, :name, {label: City.model_name.human}, { class: "selectpicker form-control" } %>
+                      <%= link_to t('helpers.add', model: City.model_name.human) + ' ...', new_city_path, class: 'btn btn-default' %> <%#data: {toggle: 'modal', target: '#new_city_modal'}, remote: true%>
+                    </div>
                   </div>
-                  <%= fb.collection_select :city_id, City.all, :id, :name, {prompt: t('helpers.select.prompt'), label: "Miasto"}, { class: "selectpicker form-control" } %>
-                  <%= link_to t('helpers.add', model: City.model_name.human) + ' ...', '#new_city_modal', class: 'btn btn-default', data: {toggle: 'modal', target: '#new_city_modal'}, remote: true %>
                   <%= fb.fields_for :job_category, @advert.job_category do |c| %>
                     <%= c.text_field :name, label: "Kategoria" %>
                   <% end %>
@@ -60,7 +64,7 @@
     </div>
   </div>
 </div>
-<div id="new_city_modal" class="modal fade" role="dialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="new_city_modal_off" class="modal fade" role="dialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,7 +72,7 @@
                 <h4 class="modal-title" id="myModalLabel">Dodaj nowe miasto</h4>
             </div>
             <div id="new_city_modal_body" class="modal-body">
-              <%= render partial: 'form_city', controller: 'cities', action: 'new', modal: true, locals: {city: City.new} %>
+              <%# render partial: controller: 'cities', action: 'new', modal: true, locals: {city: City.new} %>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" onclick="hide()" data-dismiss="modal" >Zamknij</button>
